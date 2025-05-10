@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class CsvReportGenerator implements ReportGenerator {
@@ -20,7 +21,8 @@ public class CsvReportGenerator implements ReportGenerator {
             writer.writeNext(data.keySet().toArray(new String[0]));
 
             writer.writeNext(data.values().stream()
-                    .map(Object::toString)
+                    .map(Optional::ofNullable)
+                    .map(opt -> opt.map(Object::toString).orElse(""))
                     .toArray(String[]::new));
 
             writer.flush();
