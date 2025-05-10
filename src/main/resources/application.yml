@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: reportingGeneration
+
+  servlet:
+    multipart:
+      max-request-size: 10MB
+
+server:
+  port: 8080
+  max-http-header-size: 10KB
+  max-http-post-size: 10MB
